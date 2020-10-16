@@ -1,0 +1,49 @@
+.topo-l,
+#mountNode {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+.topo-l,
+#mountNode > div {
+  z-index: 0;
+}
+.topo-l .minimap {
+  position: fixed;
+  bottom: 60px;
+  right: 80px;
+}
+.topo-l .topo-graph-info {
+  position: fixed;
+  left: 26px;
+  top: 100px;
+  padding: 16px;
+}
+.topo-l .topo-graph-info .topo-graph-info-content {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+.topo-l .topo-graph-info .topo-graph-info-content:last-child {
+  margin-bottom: 0;
+}
+.topo-l .topo-graph-info .topo-graph-info-content .topo-graph-info-badge {
+  width: 120px;
+  padding: 8px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #fff;
+  border: 1px solid #2d8cf0;
+  border-radius: 6px;
+}
+.topo-l .topo-graph-info .topo-graph-info-content .topo-graph-info-badge .topo-graph-info-img {
+  width: 30px;
+}
+.topo-l .topo-graph-info .topo-graph-info-content .topo-graph-info-badge span {
+  width: 70px;
+  text-align: left;
+  padding-left: 10px;
+}
