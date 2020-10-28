@@ -24,11 +24,15 @@ export default {
   computed: {
     mainTabs: {
       get() {
+        console.log(
+          "this.$store.state.tab.mainTabs",
+          this.$store.state.tab.mainTabs
+        );
         return this.$store.state.tab.mainTabs;
       },
       set(val) {
         this.$store.commit("updateMainTabs", val);
-      },
+      }
     },
     mainTabsActiveName: {
       get() {
@@ -36,13 +40,13 @@ export default {
       },
       set(val) {
         this.$store.commit("updateMainTabsActiveName", val);
-      },
-    },
+      }
+    }
   },
   methods: {
     //点击 tab 移除按钮后触发
     removeTab(tabName) {
-      this.mainTabs = this.mainTabs.filter((item) => item.name !== tabName);
+      this.mainTabs = this.mainTabs.filter(item => item.name !== tabName);
       if (this.mainTabs.length >= 1) {
         if (tabName === this.mainTabsActiveName) {
           this.$router.push(
@@ -58,12 +62,12 @@ export default {
     },
     //tab 被选中时触发
     selectTabHandle(tab) {
-      tab = this.mainTabs.filter((item) => item.name === tab.name);
+      tab = this.mainTabs.filter(item => item.name === tab.name);
       if (tab.length >= 1) {
         this.$router.push({ name: tab[0].name });
       }
-    },
-  },
+    }
+  }
 };
 </script>
 <style lang="less" scoped>

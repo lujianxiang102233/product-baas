@@ -180,15 +180,32 @@ export default {
           ],
         },
       ],
+      amap: null,
     }
   },
   mounted() {
+    // var map = new AMap.Map('main4', {
+    //   maxPitch: 60,
+    //   zoom: 4,
+    //   pitch: 10,
+    //   pitchEnable: true,
+    //   expandZoomRange: true,
+    //   mapStyle: 'amap://styles/0b742a48e7eee6e86b951559c1efa7f9', //地图主题
+    //   center: [110, 37], //中心点
+    //   rotation: 0, //顺时针旋转角度
+    //   resizeEnable: true,
+    // })
+    // AMap.plugin(['AMap.ToolBar', 'AMap.Scale'], function () {
+    //   map.addControl(new AMap.ToolBar())
+
+    //   map.addControl(new AMap.Scale())
+    // })
     // 基于准备好的dom，初始化echarts实例
     this.myChart = this.$echarts.init(this.$refs.chartMap, null, {
       devicePixelRatio: 2,
     }) // 解决图表缩放后模糊的问题
     this.myChart.setOption(this.drawMap(), true)
-    this.onlyChina()
+    // this.onlyChina()
     this.myChart.on('mouseover', (params) => {
       console.log('params', params)
     })
@@ -196,9 +213,11 @@ export default {
   methods: {
     onlyChina() {
       //遮罩，只显示中国
-      var amap = this.myChart.getModel().getComponent('amap').getAMap()
+      this.amap = this.myChart.getModel().getComponent('amap').getAMap()
       // operations below are the same as amap
-      amap.addControl(new AMap.DistrictSearch())
+
+      this.amap.addControl(new AMap.DistrictSearch())
+      let that = this
       new AMap.DistrictSearch({
         extensions: 'all',
         subdistrict: 0,
@@ -235,8 +254,9 @@ export default {
           strokeDasharray: [10, 2, 10],
         })
         polygon.setPath(pathArray)
-        amap.add(polygon)
+        that.amap.add(polygon)
       })
+      this.amap.setMapStyle('amap://styles/0b742a48e7eee6e86b951559c1efa7f9')
     },
     click() {
       this.list = [
@@ -332,152 +352,6 @@ export default {
           data: item[1],
         })
       })
-      // const series_ = [
-      // //闪动的线
-      // {
-      //   name: "上海 Top10",
-      //   coordinateSystem: "amap",
-      //   type: "lines",
-      //   zlevel: 1,
-      //   effect: {
-      //     show: true,
-      //     period: 6,
-      //     trailLength: 0.7,
-      //     color: "#2f44c8",
-      //     symbolSize: 3
-      //   },
-      //   lineStyle: {
-      //     normal: {
-      //       color: "#2f44c8",
-      //       width: 0,
-      //       curveness: 0.2
-      //     }
-      //   },
-      //   data: [
-      //     {
-      //       fromName: "上海",
-      //       toName: "包头",
-      //       coords: [[121.4648, 31.2891], [109.853634, 40.651412]],
-      //       value: 95
-      //     }
-      //   ]
-      // },
-      // //轨迹
-      // {
-      //   name: "上海 Top10",
-      //   coordinateSystem: "amap",
-      //   type: "lines",
-      //   zlevel: 2,
-      //   symbol: ["none", "arrow"],
-      //   symbolSize: 10,
-      //   lineStyle: {
-      //     normal: {
-      //       color: "#a6c84c",
-      //       width: 1,
-      //       opacity: 0.6,
-      //       curveness: 0.2
-      //     }
-      //   },
-      //   data: [
-      //     {
-      //       fromName: "上海",
-      //       toName: "包头",
-      //       coords: [[121.4648, 31.2891], [109.853634, 40.651412]],
-      //       value: 95
-      //     }
-      //   ]
-      // },
-
-      //包头圆点
-      //   {
-      //     name: '赵丽颖',
-      //     type: 'effectScatter',
-      //     coordinateSystem: 'amap',
-      //     zlevel: 2,
-      //     symbolSize: function (val) {
-      //       return val[2] / 8
-      //     },
-      //     rippleEffect: {
-      //       brushType: 'stroke',
-      //     },
-      //     label: {
-      //       normal: {
-      //         show: true,
-      //         position: 'bottom',
-      //         formatter: '{b}',
-      //       },
-      //     },
-      //     itemStyle: {
-      //       normal: {
-      //         color: '#a6c84c',
-      //       },
-      //     },
-      //     data: [
-      //       {
-      //         name: '包头',
-      //         value: [109.853634, 40.651412, 95],
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     name: '赵丽颖',
-      //     type: 'effectScatter',
-      //     coordinateSystem: 'amap',
-      //     zlevel: 2,
-      //     symbolSize: function (val) {
-      //       return val[2] / 8
-      //     },
-      //     rippleEffect: {
-      //       brushType: 'stroke',
-      //     },
-      //     label: {
-      //       normal: {
-      //         show: true,
-      //         position: 'bottom',
-      //         formatter: '{b}',
-      //       },
-      //     },
-      //     itemStyle: {
-      //       normal: {
-      //         color: '#a6c84c',
-      //       },
-      //     },
-      //     data: [
-      //       {
-      //         name: '石家庄',
-      //         value: [114.4995, 38.1006, 95],
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     name: '杨洋',
-      //     type: 'effectScatter',
-      //     coordinateSystem: 'amap',
-      //     zlevel: 2,
-      //     symbolSize: 12,
-      //     rippleEffect: {
-      //       brushType: 'stroke',
-      //     },
-      //     label: {
-      //       normal: {
-      //         show: true,
-      //         position: 'bottom',
-      //         formatter: '{b}',
-      //       },
-      //     },
-      //     itemStyle: {
-      //       normal: {
-      //         color: '#1935ff',
-      //       },
-      //     },
-      //     data: [
-      //       {
-      //         name: '抚州',
-      //         value: [116.35, 27.98],
-      //       },
-      //     ],
-      //   },
-      // ]
       return {
         title: {
           left: 'center',
@@ -489,12 +363,7 @@ export default {
           trigger: 'item',
           confing: true,
           formatter(params) {
-            let str = ''
-            if (params.data && params.data.value) {
-              str += `${params.seriesName}<br>
-                ${params.marker}${params.data.name}: ${params.data.value[2]}个`
-            }
-            return str
+            return params.seriesName
           },
         },
         legend: {

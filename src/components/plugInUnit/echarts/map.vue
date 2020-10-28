@@ -1,17 +1,9 @@
 <template>
   <div class="echarts">
     <div>父传过来的{{ value }}</div>
-    <div :class="{ light: partInfo }">
-      我是一盏灯（通过父传子、子传父实现 子组件之间的传参）
-    </div>
-    <li @click="$parent.$refs.lineBar.$refs.lineBar.scrollIntoView(true)">
-      通过js获取非父子组件之间的锚点定位
-    </li>
-    <div
-      id="main4"
-      ref="chartMap"
-      style="width: 100%; height: 500px; background: #0918ae"
-    ></div>
+    <div :class="{ light: partInfo }">我是一盏灯（通过父传子、子传父实现 子组件之间的传参）</div>
+    <li @click="$parent.$refs.lineBar.$refs.lineBar.scrollIntoView(true)">通过js获取非父子组件之间的锚点定位</li>
+    <div id="main4" ref="chartMap" style="width: 100%; height: 500px; background: #0918ae"></div>
   </div>
 </template>
 <script>
@@ -327,73 +319,185 @@ export default {
       ],
       list: [
         {
-          networkName: '好链-兵装链',
+          networkName: '链1',
           networkNo: 2,
           nodes: [
             {
               latitude: '116.4951',
               longitude: '40.2539',
-              mspId: 'PeerPab1',
-              name: 'aa',
-              networkNo: 2,
             },
             {
               latitude: '108.4131',
               longitude: '34.8706',
-              mspId: 'PeerPab1',
-              name: 'aa',
-              networkNo: 2,
+            },
+            {
+              latitude: '91.1',
+              longitude: '29.4',
+            },
+            {
+              latitude: '92.1',
+              longitude: '31.4',
+            },
+            {
+              latitude: '115.45',
+              longitude: '34.60',
+            },
+            {
+              latitude: '120.3695',
+              longitude: '36.0944',
+            },
+            {
+              latitude: '113.0823',
+              longitude: '28.2568',
+            },
+            {
+              latitude: '118.6853',
+              longitude: '28.8666',
+            },
+            {
+              latitude: '120.498',
+              longitude: '27.8119',
+            },
+            {
+              latitude: '119.5313',
+              longitude: '29.8773',
+            },
+            {
+              latitude: '115.45',
+              longitude: '34.60',
+            },
+            {
+              latitude: '116.4651',
+              longitude: '40.2539',
             },
           ],
         },
         {
-          networkName: '产业税务联盟链',
+          networkName: '链2',
           networkNo: 1,
           nodes: [
             {
               latitude: '116.4551',
               longitude: '40.2539',
-              mspId: 'PeerPab1',
-              name: 'aa',
-              networkNo: 1,
             },
             {
               latitude: '107.1826',
               longitude: '34.3433',
-              mspId: 'PeerPab1',
-              name: 'aa',
-              networkNo: 1,
             },
             {
               latitude: '113.5107',
               longitude: '23.2196',
-              mspId: 'PeerPab1',
-              name: 'aa',
-              networkNo: 1,
             },
             {
               latitude: '112.3353',
               longitude: '37.9413',
-              mspId: 'PeerPab1',
-              name: 'aa',
-              networkNo: 1,
+            },
+            {
+              latitude: '87.9236',
+              longitude: '43.5883',
+            },
+            {
+              latitude: '112.8955',
+              longitude: '23.1097',
+            },
+            {
+              latitude: '115.0488',
+              longitude: '39.0948',
+            },
+            {
+              latitude: '103.5901',
+              longitude: '36.3043',
+            },
+            {
+              latitude: '118.8062',
+              longitude: '31.9208',
+            },
+            {
+              latitude: '121.1023',
+              longitude: '32.1625',
+            },
+            {
+              latitude: '118.1689',
+              longitude: '24.6478',
+            },
+            {
+              latitude: '121.1353',
+              longitude: '28.6688',
+            },
+            {
+              latitude: '117.29',
+              longitude: '32.0581',
+            },
+            {
+              latitude: '111.4124',
+              longitude: '40.4901',
+            },
+            {
+              latitude: '120.9155',
+              longitude: '30.6354',
+            },
+            {
+              latitude: '116.0046',
+              longitude: '28.6633',
+            },
+            {
+              latitude: '115.5476',
+              longitude: '28.2765',
             },
           ],
-          nodeInfo: {
-            belongToChannel: 'null',
-            commonName: '平安银行',
-            league: '产业税务联盟链',
-            nodeType: 'peer节点',
-            onlineStatus: '当前在线',
-          },
+        },
+        {
+          networkName: '链3',
+          networkNo: 3,
+          nodes: [
+            {
+              latitude: '121.4648',
+              longitude: '31.2891',
+            },
+            {
+              latitude: '118.7073',
+              longitude: '37.5513',
+            },
+            {
+              latitude: '114.0610',
+              longitude: '22.5285',
+            },
+            {
+              latitude: '114.1610',
+              longitude: '22.5285',
+            },
+            {
+              latitude: '111.4783',
+              longitude: '36.1615',
+            },
+            {
+              latitude: '118.3118',
+              longitude: '35.2936',
+            },
+            {
+              latitude: '124.541',
+              longitude: '40.4242',
+            },
+            {
+              latitude: '119.5642',
+              longitude: '28.1854',
+            },
+          ],
         },
       ],
+      nodeInfo: {
+        belongToChannel: 'aa',
+        commonName: '平安银行',
+        league: '产业税务联盟链',
+        nodeType: 'peer节点',
+        onlineStatus: '当前在线',
+      },
       // flag: true,
     }
   },
   mounted() {
     // 基于准备好的dom，初始化echarts实例
-    this.$echarts.registerMap('china', json)
+    // this.$echarts.registerMap('china', json)
     this.myChart = this.$echarts.init(this.$refs.chartMap, null, {
       devicePixelRatio: 2,
     }) // 解决图表缩放后模糊的问题
@@ -539,7 +643,7 @@ export default {
               formatter: '{b}',
             },
           },
-          symbolSize: 12,
+          symbolSize: 5,
           itemStyle: {
             normal: {
               color: this.$getColor(
@@ -558,12 +662,16 @@ export default {
         tooltip: {
           trigger: 'item',
           confing: true,
-          formatter(params) {
+          formatter: (params) => {
+            let {
+              belongToChannel,
+              commonName,
+              league,
+              nodeType,
+              onlineStatus,
+            } = this.nodeInfo
             let str = ''
-            if (params.data && params.data.value) {
-              str += `${params.seriesName}<br>
-                ${params.marker}${params.data.name}: ${params.data.value[2]}个`
-            }
+            str += `所属联盟：${league}<br>节点结构：${commonName}<br>节点类型：${nodeType}<br>在线状态：${onlineStatus}<br>所属通道：${belongToChannel}`
             return str
           },
         },
@@ -592,7 +700,7 @@ export default {
           label: {
             show: false,
             emphasis: {
-              show: false, //鼠标移入是否显示省名称
+              show: true, //鼠标移入是否显示省名称
               color: '#fff',
             },
           },
@@ -601,7 +709,7 @@ export default {
             // areaColor: "#242C57", //地图颜色
             areaColor: {
               type: 'linear-gradient',
-              x: 600,
+              x: 1000,
               y: 0,
               x2: 0,
               y2: 0,

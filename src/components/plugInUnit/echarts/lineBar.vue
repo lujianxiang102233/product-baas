@@ -55,6 +55,20 @@ export default {
       series: [],
     }
   },
+  watch: {
+    '$i18n.locale'(newValue) {
+      console.log(newValue)
+      this.initChartLine().yAxis.name = this.$t('unit')
+      // 设置 option参数
+      // this.option.series[0].data,forEach( data => {
+      // 	data.tooltip.formatter = `${this.$t('common.tipTitle')}<br/>
+      // 			${this.$t('common.tipName')}: ${data.value}`;
+      // })
+      // // 使用 setOption()方法重绘
+      this.series = []
+      this.chartLine.setOption(this.initChartLine(), true)
+    },
+  },
   methods: {
     open() {
       this.$parent.handleInfo(true)
@@ -116,7 +130,7 @@ export default {
           },
           backgroundColor: 'rgba(0,0,0,.7)',
           extraCssText: 'box-shadow:0 3px 11px 0 rgba(169,179,211,0.5)', //提示框边框阴影
-          formatter: function (params) {
+          formatter: (params) => {
             let str = `<div style='font-weight:900'>${params[0].name}</div>`
             params.forEach((v) => {
               let value = v.value
@@ -124,7 +138,11 @@ export default {
                   ? v.value[v.seriesName]
                   : v.value[1]
                 : null
-              str += `<div style='line-height:30px'><span style='text-align:left;display:inline-block;width:100px;'>${v.seriesName}</span><span style='text-align:right;display:inline-block;width:100px;'>${value}个</span></div>`
+              str += `<div style='line-height:30px'><span style='text-align:left;display:inline-block;width:100px;'>${
+                v.seriesName
+              }</span><span style='text-align:right;display:inline-block;width:100px;'>${value}${this.$t(
+                'only'
+              )}</span></div>`
             })
             return str
           },
@@ -167,7 +185,7 @@ export default {
         },
         yAxis: {
           type: 'value',
-          name: '单位：个',
+          name: `${this.$t('unit')}：${this.$t('only')}`,
           axisLine: {
             show: false,
             lineStyle: {

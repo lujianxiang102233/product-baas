@@ -21,7 +21,7 @@ let routes = [
       },
       {
         path: "/sm2",
-        name: "表单校验",
+        name: "sm2加解密",
         meta: {
           icon: "el-icon-date"
         },
@@ -38,15 +38,6 @@ let routes = [
           require(["../components/plugInUnit/checkTable.vue"], resolve)
       },
       {
-        path: "/tabs",
-        name: "tabs栏",
-        meta: {
-          icon: "el-icon-s-home"
-        },
-        component: resolve =>
-          require(["../components/plugInUnit/tabs.vue"], resolve)
-      },
-      {
         path: "/sortTable",
         name: "表格排序",
         meta: {
@@ -56,13 +47,13 @@ let routes = [
           require(["../components/plugInUnit/sortTable.vue"], resolve)
       },
       {
-        path: "/dropdown",
+        path: "/animation",
         name: "动画",
         meta: {
           icon: "el-icon-upload"
         },
         component: resolve =>
-          require(["../components/plugInUnit/dropdown.vue"], resolve)
+          require(["../components/plugInUnit/animation.vue"], resolve)
       },
       {
         path: "/echarts",

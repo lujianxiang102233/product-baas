@@ -23,13 +23,15 @@ import "echarts-extension-amap";
 // require("echarts-extension-amap");
 import JsonViewer from "vue-json-viewer";
 // 引入中国地图
-// import "echarts/map/js/china";
+import "echarts/map/js/china";
 import axios from "axios";
+
 Vue.prototype.$axios = axios;
 Vue.prototype.$colorList = color.colorList;
 Vue.prototype.$echarts = echarts;
 Vue.prototype.$jse = new JsEncrypt();
 Vue.prototype.$sm2 = sm2.sm2;
+import i18n from "./common/lang";
 // console.log(Vue.prototype.$jse);
 import filter from "./filters";
 Vue.mixin(filter);
@@ -63,6 +65,7 @@ Vue.config.productionTip = false;
 /* eslint-disable no-new */
 new Vue({
   el: "#app",
+  i18n, // 不要忘记
   router,
   store,
   render: h => h(App)

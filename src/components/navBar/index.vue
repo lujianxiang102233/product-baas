@@ -39,81 +39,82 @@
 import { mapState } from 'vuex'
 export default {
   data() {
-    return {
-      sideBarList: [
-        {
-          url: '/mixins',
-          name: '混合分发',
-          icon: 'el-icon-date',
-        },
-        {
-          url: '/gTopo',
-          name: '流程图',
-          icon: 'el-icon-date',
-        },
-        {
-          url: '/sm2',
-          name: 'sm2加解密',
-          icon: 'el-icon-date',
-        },
-        {
-          url: '/checkTable',
-          name: '表格多选',
-          icon: 'el-icon-folder-add',
-        },
-        {
-          url: '/sortTable',
-          name: '表格排序',
-          icon: 'el-icon-s-cooperation',
-        },
-        {
-          url: '/complexTable',
-          name: '排序多选表格',
-          icon: 'el-icon-s-shop',
-        },
-        {
-          url: '/rsa',
-          name: 'rsa加解密',
-          icon: 'el-icon-s-promotion',
-        },
-        {
-          url: '/dropdown',
-          name: '动画',
-          icon: 'el-icon-upload',
-        },
-        {
-          url: '/echarts',
-          name: '地图迁徙图',
-          icon: 'el-icon-s-flag',
-        },
-        {
-          url: '/popover',
-          name: '弹出框',
-          icon: 'el-icon-star-on',
-        },
-        {
-          url: '/tooltip',
-          name: '文字提示',
-          icon: 'el-icon-video-camera-solid',
-        },
-        {
-          url: '/confirm',
-          name: '消息弹窗',
-          icon: 'el-icon-s-open',
-        },
-        {
-          url: '/gaudMap',
-          name: '高德地图',
-          icon: 'el-icon-s-opportunity',
-        },
-      ],
-    }
+    return {}
   },
   computed: {
     ...mapState({
       color: (state) => state.app.color,
       isCollapse: (state) => state.app.isCollapse,
     }),
+    sideBarList() {
+      return [
+        {
+          url: '/mixins',
+          name: this.$t('mixins'),
+          icon: 'el-icon-date',
+        },
+        {
+          url: '/gTopo',
+          name: this.$t('gTopo'),
+          icon: 'el-icon-date',
+        },
+        {
+          url: '/sm2',
+          name: this.$t('sm2'),
+          icon: 'el-icon-date',
+        },
+        {
+          url: '/checkTable',
+          name: this.$t('checkTable'),
+          icon: 'el-icon-folder-add',
+        },
+        {
+          url: '/sortTable',
+          name: this.$t('sortTable'),
+          icon: 'el-icon-s-cooperation',
+        },
+        {
+          url: '/complexTable',
+          name: this.$t('complexTable'),
+          icon: 'el-icon-s-shop',
+        },
+        {
+          url: '/rsa',
+          name: this.$t('rsa'),
+          icon: 'el-icon-s-promotion',
+        },
+        {
+          url: '/animation',
+          name: this.$t('animation'),
+          icon: 'el-icon-upload',
+        },
+        {
+          url: '/echarts',
+          name: this.$t('echarts'),
+          icon: 'el-icon-s-flag',
+        },
+        {
+          url: '/popover',
+          name: this.$t('popover'),
+          icon: 'el-icon-star-on',
+        },
+        {
+          url: '/tooltip',
+          name: this.$t('tooltip'),
+          icon: 'el-icon-video-camera-solid',
+        },
+        {
+          url: '/confirm',
+          name: this.$t('confirm'),
+          icon: 'el-icon-s-open',
+        },
+        {
+          url: '/gaudMap',
+          name: this.$t('gaudMap'),
+          icon: 'el-icon-s-opportunity',
+        },
+      ]
+    },
     mainTabs: {
       get() {
         return this.$store.state.tab.mainTabs

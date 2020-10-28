@@ -1,0 +1,21 @@
+{
+  "mixins": "混合分发",
+  "gaudMap": "高德地图",
+  "gTopo": "流程图",
+  "confirm": "消息弹窗",
+  "tooltip": "文字提示",
+  "popover": "弹出框",
+  "rsa": "rsa加解密",
+  "complexTable": "排序多选表格",
+  "echarts": "地图迁徙图",
+  "animation": "动画",
+  "sortTable": "表格排序",
+  "checkTable": "表格多选",
+  "sm2": "sm2加解密",
+  "download": "下载",
+  "unit": "单位",
+  "only": "个",
+  "date": "日期",
+  "name": "名字",
+  "address": "地址"
+}

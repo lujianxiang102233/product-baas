@@ -8,12 +8,17 @@
     <vuedemoNpmPractice :propData="initData"></vuedemoNpmPractice>
     <!-- <div>{{msg | capitalize('YYYY/MM/DD hh-mm-ss')}}</div> -->
     <!-- <forms></forms>
-    <dropdown></dropdown>-->
+    <animation></animation>-->
+    <el-date-picker
+      v-model="value1"
+      type="date"
+      :placeholder="$t('selectDate')">
+    </el-date-picker>
   </div>
 </template>
 <script>
 // import forms from "@/components/plugInUnit/form";
-// import dropdown from "@/components/plugInUnit/dropdown";
+// import animation from "@/components/plugInUnit/animation";
 import * as components from "@/components/plugInUnit"; //引入拖拽组件
 export default {
   components: {
@@ -21,6 +26,7 @@ export default {
   },
   data() {
     return {
+      value1: "",
       typeStatus: "3",
       msg: "1528094422381",
       initData: "哈哈123123"

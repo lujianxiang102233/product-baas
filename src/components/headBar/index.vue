@@ -2,6 +2,15 @@
   <div class="headBar" :style="{backgroundColor:color}">
      <i :class="isCollapse?'el-icon-s-unfold':'el-icon-s-fold'" @click="open"></i>
     <div class="fr user">
+      <el-dropdown @command="handleCommand">
+      <span class="el-dropdown-link">
+        语言<i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+        <el-dropdown-menu slot="dropdown">
+          <el-dropdown-item command="zh_CN">中文</el-dropdown-item>
+          <el-dropdown-item command="en_US">英文</el-dropdown-item>
+        </el-dropdown-menu>
+      </el-dropdown>
       <!-- 主题：<el-color-picker v-model="color"  size="mini"></el-color-picker> -->
       <span>{{user}}</span>
       <i class="el-icon-user"></i>
@@ -36,6 +45,10 @@ export default {
     }
   },
   methods: {
+    handleCommand(command) {
+      this.$i18n.locale = command;
+      // localStorage.setItem('locale',command)
+    },
     // 侧边栏收缩和展开
     open() {
       this.isCollapse = !this.isCollapse;
@@ -54,12 +67,16 @@ export default {
   padding: 0px 20px;
   box-sizing: border-box;
   color: #fff;
-  i {
+  i:not(.el-icon-arrow-down) {
     font-size: 30px;
     line-height: 60px;
   }
   .user {
     font-size: 16px;
+    .el-dropdown {
+      margin-right: 20px;
+      color: #fff;
+    }
   }
 }
 </style>

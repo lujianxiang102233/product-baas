@@ -2,12 +2,17 @@ import axios from "axios";
 import QS from "qs"; //引入qs模块，用来序列化post类型的数据
 import router from "../router";
 
+// 环境的切换
+// if (process.env.NODE_ENV == "development") {
+//   axios.defaults.baseURL = "https://www.baidu.com";
+// } else if (process.env.NODE_ENV == "debug") {
+//   axios.defaults.baseURL = "https://www.npmjs.cn";
+// } else if (process.env.NODE_ENV == "production") {
+//   axios.defaults.baseURL = "https://www.sina.com.cn";
+// }
+axios.defaults.baseURL = process.env.API_ROOT;
 // 请求超时
 axios.defaults.timeout = 10000;
-
-//请求基础Url
-axios.defaults.baseURL = "http://192.168.180.154:33333";
-
 //post请求头
 axios.defaults.headers.post["Content-Type"] =
   "application/x-www-form-urlencoded;charset=UTF-8";
@@ -40,6 +45,11 @@ axios.interceptors.response.use(
         case 403:
           console.log("token过期");
           break;
+        case 404:
+          console.log("网络请求不存在");
+          break;
+        default:
+          console.log("其他错误");
       }
     }
     return Promise.reject(error.response);

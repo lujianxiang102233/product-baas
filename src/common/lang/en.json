@@ -1,0 +1,21 @@
+{
+  "mixins": "Mixed distribution",
+  "gaudMap": "gaudMap",
+  "gTopo": "flow chart",
+  "confirm": "News pop-up",
+  "tooltip": "Text prompt",
+  "popover": "popover",
+  "rsa": "rsa",
+  "complexTable": "selection table",
+  "echarts": "migration map",
+  "animation": "animation",
+  "sortTable": "sortTable",
+  "checkTable": "checkTable",
+  "sm2": "sm2",
+  "download": "download",
+  "unit": "unit",
+  "only": "only",
+  "date": "date",
+  "name": "name",
+  "address": "address"
+}

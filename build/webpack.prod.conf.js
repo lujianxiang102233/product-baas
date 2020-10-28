@@ -10,8 +10,35 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeCSSPlugin = require("optimize-css-assets-webpack-plugin");
 const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+// 获取script传入参数, 判断当前打包环境
+const argv = require("yargs").argv;
+// const configRelation = {
+//   prd:'prd',
+//   product:'prd',
+//   fat:'fat',
+//   fat2:'fat2',
+//   test:'test'
+// }
+console.log(22, argv);
+let env = "",
+  status = argv._[0];
+if (process.env.NODE_ENV === "testing") {
+  env = require("../config/test.env");
+} else {
+  switch (status) {
+    case "TEST_SIT":
+      env = require("../config/prod_sit.env");
+      console.log("当前build环境:", "sit测试环境");
+      break;
+    default:
+      env = require("../config/prod.env");
+      console.log("当前build环境:", "线上生产环境");
+      break;
+  }
+}
 
-const env = require("../config/prod.env");
+// const env = require("../config/prod.env");
 
 const webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -29,6 +56,7 @@ const webpackConfig = merge(baseWebpackConfig, {
     chunkFilename: utils.assetsPath("js/[id].[chunkhash].js")
   },
   plugins: [
+    new CleanWebpackPlugin(), //每次打包前清空dist
     // http://vuejs.github.io/vue-loader/en/workflow/production.html
     new webpack.DefinePlugin({
       "process.env": env
@@ -64,10 +92,10 @@ const webpackConfig = merge(baseWebpackConfig, {
     new HtmlWebpackPlugin({
       filename: config.build.index,
       template: "index.html",
-      inject: true,
+      inject: true, //设置将js和css文件插入在html的哪个位置
       minify: {
-        removeComments: true,
-        collapseWhitespace: true,
+        removeComments: true, //清理html中的注释
+        collapseWhitespace: true, //清理html中的空格、换行符
         removeAttributeQuotes: true
         // more options:
         // https://github.com/kangax/html-minifier#options-quick-reference
